@@ -9,7 +9,12 @@ class Warehouse extends Model
 {
     use HasFactory;
 
-    protected $fillabke = [
+    protected $fillable = [
         'code', 'building_id', 'customer_name', 'customer_email', 'customer_rfc', 'comments'
     ];
+
+    public function Building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 }

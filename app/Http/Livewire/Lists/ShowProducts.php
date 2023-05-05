@@ -107,4 +107,11 @@ class ShowProducts extends Component
             $description = 'EL producto ha sido editado con éxito!'
         );
     }
+
+    /**
+     * Delete product from databse
+     */
+    public function delete(){
+        
+    }
 }

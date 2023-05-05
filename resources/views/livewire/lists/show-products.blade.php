@@ -1,9 +1,25 @@
 <div>
+    <!-- tooltips -->
+    <div>
+        <div id="tooltip-import" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Importar Excel
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+
+        <div id="tooltip-export" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Exportar Excel
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    </div>
+    <!-- end tooltips -->
 
     <!-- header -->
     <div class="mb-4">
         <!-- bread -->
-        <x-custom.bread></x-custom.bread>
+        <x-custom.bread>
+            @slot('category') Catalogos  @endslot
+            Productos
+        </x-custom.bread>
          <!-- page title -->
          <h1 class="mt-2 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl dark:text-white">Productos</h1>
     </div>
@@ -17,12 +33,12 @@
             <div class="flex items-center w-2/6 sm:justify-end">
                 <div class="flex pl-2 space-x-1">
                     <a wire:click="$set('openUploadProducts', true)" href="#" class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <svg data-tooltip-target="tooltip-import" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M10.5 3.75a6 6 0 00-5.98 6.496A5.25 5.25 0 006.75 20.25H18a4.5 4.5 0 002.206-8.423 3.75 3.75 0 00-4.133-4.303A6.001 6.001 0 0010.5 3.75zm2.03 5.47a.75.75 0 00-1.06 0l-3 3a.75.75 0 101.06 1.06l1.72-1.72v4.94a.75.75 0 001.5 0v-4.94l1.72 1.72a.75.75 0 101.06-1.06l-3-3z"></path>
                           </svg>
                     </a>
                     <a href="#" class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <svg data-tooltip-target="tooltip-export" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M2.25 4.5A.75.75 0 013 3.75h14.25a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75zm0 4.5A.75.75 0 013 8.25h9.75a.75.75 0 010 1.5H3A.75.75 0 012.25 9zm15-.75A.75.75 0 0118 9v10.19l2.47-2.47a.75.75 0 111.06 1.06l-3.75 3.75a.75.75 0 01-1.06 0l-3.75-3.75a.75.75 0 111.06-1.06l2.47 2.47V9a.75.75 0 01.75-.75zm-15 5.25a.75.75 0 01.75-.75h9.75a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75z"></path>
                         </svg>
                     </a>
@@ -69,7 +85,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <x-button label="Editar" wire:click="edit({{ $item }})"/>
-                            <x-button label="Eliminar" />
+                            <x-button label="Eliminar" wire:click="delete({{ $item }})" />
                         </td>
                     </tr>
                     @endforeach

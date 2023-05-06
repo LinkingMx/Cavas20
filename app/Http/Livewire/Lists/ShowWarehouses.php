@@ -16,6 +16,7 @@ class ShowWarehouses extends Component
     public $openUpload = false;
     public $openNew = false;
     public $openEdit = false;
+    public $openDetails = false;
 
     //New adn edit modal properties
     public $code;
@@ -25,6 +26,7 @@ class ShowWarehouses extends Component
     public $customer_rfc;
     public $comments;
     public $warehouse;
+    public $prefix;
 
     //Search property
     public $search;
@@ -103,6 +105,16 @@ class ShowWarehouses extends Component
 
         $this->warehouse = $warehouse;
         $this->openEdit = true;
+    }
+
+    /**
+     * Show more element by Modal
+     * the parameter is an object of the Prpoduct
+     */
+    public function showMore( Warehouse $warehouse){
+
+        $this->warehouse = $warehouse;
+        $this->openDetails = true;
     }
 
     /**

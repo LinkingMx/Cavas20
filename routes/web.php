@@ -3,6 +3,8 @@
 use App\Http\Livewire\Lists\ShowProducts;
 use App\Http\Livewire\Lists\ShowBuildings;
 use App\Http\Livewire\Lists\ShowWarehouses;
+use App\Http\Livewire\Operations\Consume;
+use App\Http\Livewire\Operations\Sell;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,4 +54,20 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('warehouses', ShowWarehouses::class)->name('warehouses');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('sell', Sell::class)->name('sell');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('consume', Consume::class)->name('consume');
 });

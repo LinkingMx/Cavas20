@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Product;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,22 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/warehouses', function( Request $request ){
+
+    $search = $request->search;
+
+    return Warehouse::where( 'code', 'like', "%{$search}%" )
+    ->OrWhere('comments', 'like', "%{$search}%")
+    ->OrWhere('customer_name', 'like', "%{$search}%")
+    ->get();
+})->name('api.warehouses.index');
+
+Route::get('/products', function( Request $request ){
+
+    $search = $request->search;
+
+    return Product::where( 'sap', 'like', "%{$search}%" )
+    ->OrWhere('name', 'like', "%{$search}%")
+    ->get();
+})->name('api.products.index');

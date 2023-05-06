@@ -84,8 +84,8 @@
                             {{ '$ '.number_format($item->price) }}
                         </td>
                         <td class="px-6 py-4">
-                            <x-button label="Editar" wire:click="edit({{ $item }})"/>
-                            <x-button label="Eliminar" wire:click="delete({{ $item }})" />
+                            <x-button icon="pencil-alt" primary wire:click="edit({{ $item }})"/>
+                            <x-button icon="trash" negative wire:click="delete({{ $item }})" />
                         </td>
                     </tr>
                     @endforeach

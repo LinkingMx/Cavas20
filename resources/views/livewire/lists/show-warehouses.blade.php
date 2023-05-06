@@ -64,16 +64,7 @@
                         Sucursal
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Comentarios
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Cliente
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        email cliente
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        rfc cliente
+                        Nicho
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Acciones
@@ -84,6 +75,7 @@
                 @foreach ($warehouses as $item)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <x-button icon="eye" wire:click="showMore({{ $item }})"/>
                             {{ $item->code }}
                         </th>
                         <td class="px-6 py-4">
@@ -93,17 +85,8 @@
                             {{ $item->comments }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->customer_name }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $item->customer_email }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $item->customer_rfc }}
-                        </td>
-                        <td class="px-6 py-4">
-                            <x-button label="Editar" wire:click="edit({{ $item }})"/>
-                            <x-button label="Eliminar" wire:click="delete({{ $item }})" />
+                            <x-button icon="pencil-alt" primary wire:click="edit({{ $item }})"/>
+                            <x-button icon="trash" negative wire:click="delete({{ $item }})" />
                         </td>
                     </tr>
                     @endforeach
@@ -221,6 +204,50 @@
                 <div class="flex justify-end gap-x-4">
                     <x-button flat label="Cancel" wire:click="$set('openEdit', false)" />
                     <x-button primary label="Aceptar" wire:click="update" />
+                </div>
+            </x-slot>
+    </x-card>
+    </x-modal>
+    <!-- End edit product modal -->
+
+    <!-- Show more Modal -->
+    <x-modal blur wire:model="openDetails">
+        <x-card title="Información adicional">
+            <x-errors class="mb-4" />
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                @if ( $warehouse )
+                    
+                    <div class="relative overflow-x-auto">
+                        
+                        <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Detalles de la cava:</h2>
+                        <ol class="max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400">
+                            <li>
+                                <span class="font-semibold text-gray-900 dark:text-white">Código</span> : {{ $warehouse->code }}
+                            </li>
+                            <li>
+                                <span class="font-semibold text-gray-900 dark:text-white">Sucursal</span> : {{ $warehouse->building->name }}
+                            </li>
+                            <li>
+                                <span class="font-semibold text-gray-900 dark:text-white">Nicho</span> : {{ $warehouse->comments }}
+                            </li>
+                            <li>
+                                <span class="font-semibold text-gray-900 dark:text-white">Cliente</span> : {{ $warehouse->customer_name }}
+                            </li>
+                            <li>
+                                <span class="font-semibold text-gray-900 dark:text-white">email</span> : {{ $warehouse->customer_email }}
+                            </li>
+                            <li>
+                                <span class="font-semibold text-gray-900 dark:text-white">RFC</span> : {{ $warehouse->customer_rfc }}
+                            </li>
+                        </ol>
+
+                    </div>
+
+                @endif
+            </div>
+            <x-slot name="footer">
+                <div class="flex justify-end gap-x-4">
+                    <x-button flat label="Cerrar" wire:click="$set('openDetails', false)" />
                 </div>
             </x-slot>
     </x-card>

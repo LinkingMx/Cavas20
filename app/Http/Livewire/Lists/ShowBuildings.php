@@ -75,7 +75,7 @@ class ShowBuildings extends Component
      * Edit element by Modal
      * the parameter is an object of the Prpoduct
      */
-    public function edit( Building $building){
+    public function edit( Building $building ){
 
         $this->building = $building;
         $this->openEdit = true;
@@ -106,9 +106,19 @@ class ShowBuildings extends Component
     }
 
     /**
-     * Delete product from databse
+     * Delete product from databse with softdelets
      */
-    public function delete(){
-        
+    public function delete( Building $building ){
+        //Delete de info
+        Building::where( 'id', '=', $building['id'])->delete();
+
+        //Emit a event to render de view of the secondary component livewire
+        $this->emitTo('lists.show-buildings','render');
+
+        // use a simple syntax: success | error | warning | info
+        $this->notification()->error(
+            $title = 'Registro eliminado',
+            $description = 'Registro eliminado con exito!'
+        );
     }
 }

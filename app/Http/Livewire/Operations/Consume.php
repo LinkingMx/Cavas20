@@ -85,7 +85,6 @@ class Consume extends Component
         $this->notification()->success(
             $title = 'Producto consumido',
             $description = 'el producto ha sido consumido a la cava con éxito!'
-        );
-       
+        );  
     }
 }

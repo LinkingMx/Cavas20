@@ -32,11 +32,11 @@
                 <ul id="dropdown-operaciones" class="py-2 space-y-2">
                     <li>
                         <a href="{{ route('sell') }}"
-                            class="{{ Route::is('sell') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">* Vender cava</a>
+                            class="{{ Route::is('sell') ? 'bg-gray-100 animate-pulse' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><span class="flex w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>Vender cava</a>
                     </li>
                     <li>
                         <a href=" {{ route('consume') }}"
-                            class="{{ Route::is('consume') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">* Consumir cava</a>
+                            class="{{ Route::is('consume') ? 'bg-gray-100 animate-pulse' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><span class="flex w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>Consumir cava</a>
                     </li>
                 </ul>
             </li>
@@ -60,15 +60,15 @@
                 <ul id="dropdown-catalogos" class="{{ Route::is('buildings') || Route::is('products') || Route::is('warehouses') ? '' : 'hidden' }} py-2 space-y-2">
                     <li>
                         <a href="{{route('buildings')}}"
-                            class="{{ Route::is('buildings') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Sucursales</a>
+                            class="{{ Route::is('buildings') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><span class="flex w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>Sucursales</a>
                     </li>
                     <li class="active">
                         <a href="{{route('products')}}"
-                            class="{{ Route::is('products') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Productos</a>
+                            class="{{ Route::is('products') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><span class="flex w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>Productos</a>
                     </li>
                     <li>
                         <a href="{{route('warehouses')}}"
-                            class="{{ Route::is('warehouses') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Cavas</a>
+                            class="{{ Route::is('warehouses') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><span class="flex w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>Cavas</a>
                     </li>
                 </ul>
             </li>

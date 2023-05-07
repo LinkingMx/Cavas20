@@ -6,7 +6,9 @@ use App\Models\Building;
 use App\Models\Warehouse;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Component;
+use Stringable;
 use WireUi\Traits\Actions;
+use Illuminate\Support\Str;
 
 class ShowWarehouses extends Component
 {
@@ -72,6 +74,27 @@ class ShowWarehouses extends Component
      */
     public function save(){
 
+        //Make the warehouse's code
+        //Find the last warehouse with the correct prefix of the building
+        $prefix = Building::find( $this->building_id );
+        //dd($prefix->prefix);
+
+        //Get the last warehouse
+        $last_warehouse = Warehouse::where( 'code', 'like', '%'.$prefix->prefix.'%')
+        ->orderBy('code', 'desc')
+        ->limit(1)
+        ->get();
+
+        //dd($last_warehouse[0]['code']);
+
+        //Substring to the last warehouse
+        $converted = Str::substr( $last_warehouse[0]['code'], 9, 3);
+        //dd($converted);
+
+        $next = $converted + 1;
+        dd($next);
+        
+        
         //Execute validation whit rules if you want to estabilsh another porperty not equal to rules $this->validate( $this->yourRules );
         $this->validate( $this->rulesNew);
 

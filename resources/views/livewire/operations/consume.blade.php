@@ -17,7 +17,7 @@
                     <x-select class="w-3/4" label="Elegir cava y presiona el boton para confirmar"
                         wire:model.defer="code" placeholder="Elige la cava a utilizar" :async-data="route('api.warehouses.index')"
                         option-label="code" icon="Home" option-value="id" option-description="comments" />
-                    <x-button icon="check-circle" positive wire:click="setWarehouse()" class="ml-2 mt-6" />
+                    <x-button icon="check-circle" primary wire:click="setWarehouse()" class="ml-2 mt-6" />
                 </div>
                 @if ($warehouse)
                     <!-- divider -->

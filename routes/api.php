@@ -24,12 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/warehouses', function (Request $request) {
 
     $search = $request->search;
-
-    return  Warehouse::where('code', 'like', "%{$search}%")
+    
+    $wa = Warehouse::where('code', 'like', "%{$search}%")
         ->OrWhere('comments', 'like', "%{$search}%")
         ->OrWhere('customer_name', 'like', "%{$search}%")
-    
         ->get();
+
+    //method values() quit de index of the array in result of method Get()
+    return $wa->where('building_id', 1)->values();
+    
     
     })->name('api.warehouses.index');
     

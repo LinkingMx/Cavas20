@@ -54,7 +54,12 @@ class Consume extends Component
             $prods = Transaction::where('warehouse_id', '=', $this->code )
             ->get();
 
-            $this->products = $prods->unique('product_id');
+            //Validate if isEmpty the collection return a null to view for the if 
+            if ( $prods->isEmpty() ) {
+                $this->products = NULL;
+            }else{
+                $this->products = $prods->unique('product_id');
+            }  
         }
     } 
 
@@ -66,25 +71,33 @@ class Consume extends Component
         //Get the sum of the product on the warehouse
         $qty =  Transaction::where('warehouse_id', '=', $this->warehouse['id'])->sum('qty');
 
-        //Execute validation whit rules if you want to estabilsh another porperty not equal to rules $this->validate( $this->yourRules );
-        $this->validate();
+        if ( $qty < $this->qty ) {
+            // use a simple syntax: success | error | warning | info
+            $this->notification()->error(
+                $title = 'Error de calculo',
+                $description = 'El valor final de producto no puede ser mayor a la existencia actual!'
+            ); 
+        } else {
+            //Execute validation whit rules if you want to estabilsh another porperty not equal to rules $this->validate( $this->yourRules );
+            $this->validate();
 
-        Transaction::create([
-            "product_id" => $this->product_id,
-            "qty" => ($qty - $this->qty)*-1,
-            "warehouse_id" => $this->warehouse['id']
-        ]);
+            Transaction::create([
+                "product_id" => $this->product_id,
+                "qty" => ($qty - $this->qty)*-1,
+                "warehouse_id" => $this->warehouse['id']
+            ]);
 
-        //Emit a event to render de view of the secondary component livewire
-        $this->emitTo('operations.consume','render');
+            //Emit a event to render de view of the secondary component livewire
+            $this->emitTo('operations.consume','render');
 
-        //Clear product and qty
-        $this->reset('product_id', 'qty');
+            //Clear product and qty
+            $this->reset('product_id', 'qty');
 
-        // use a simple syntax: success | error | warning | info
-        $this->notification()->success(
-            $title = 'Producto consumido',
-            $description = 'el producto ha sido consumido a la cava con éxito!'
-        );  
+            // use a simple syntax: success | error | warning | info
+            $this->notification()->success(
+                $title = 'Producto consumido',
+                $description = 'el producto ha sido consumido a la cava con éxito!'
+            );  
+        }
     }
 }

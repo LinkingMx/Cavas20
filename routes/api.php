@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Building;
 use App\Models\Product;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
@@ -20,21 +21,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/warehouses', function( Request $request ){
+Route::get('/warehouses', function (Request $request) {
 
     $search = $request->search;
 
-    return Warehouse::where( 'code', 'like', "%{$search}%" )
-    ->OrWhere('comments', 'like', "%{$search}%")
-    ->OrWhere('customer_name', 'like', "%{$search}%")
-    ->get();
-})->name('api.warehouses.index');
+    return  Warehouse::where('code', 'like', "%{$search}%")
+        ->OrWhere('comments', 'like', "%{$search}%")
+        ->OrWhere('customer_name', 'like', "%{$search}%")
+    
+        ->get();
+    
+    })->name('api.warehouses.index');
+    
 
-Route::get('/products', function( Request $request ){
+
+Route::get('/products', function (Request $request) {
 
     $search = $request->search;
 
-    return Product::where( 'sap', 'like', "%{$search}%" )
-    ->OrWhere('name', 'like', "%{$search}%")
-    ->get();
+    return Product::where('sap', 'like', "%{$search}%")
+        ->OrWhere('name', 'like', "%{$search}%")
+        ->get();
 })->name('api.products.index');

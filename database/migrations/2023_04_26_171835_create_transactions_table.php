@@ -23,7 +23,6 @@ return new class extends Migration
             $table->double('qty', 6, 2);
 
             $table->timestamps();
-
             $table->softDeletes();
         });
     }

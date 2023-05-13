@@ -8,6 +8,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="shortcat icon" href="images/favicon.ico"> 
+
 
     <!-- Scripts -->
     @livewireScripts

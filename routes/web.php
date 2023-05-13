@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\Configuration\Test;
+use App\Http\Livewire\Configuration\Users;
 use App\Http\Livewire\Lists\ShowProducts;
 use App\Http\Livewire\Lists\ShowBuildings;
 use App\Http\Livewire\Lists\ShowWarehouses;
@@ -19,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware([
@@ -70,4 +72,20 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('consume', Consume::class)->name('consume');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('users', Users::class)->name('users');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('test', Test::class)->name('test');
 });

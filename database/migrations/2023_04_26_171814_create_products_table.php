@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->string('sap')->unique();
+            $table->string('sap');
             $table->string('name');
             $table->double('price')->nullable();
 

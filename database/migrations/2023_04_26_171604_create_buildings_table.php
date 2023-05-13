@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('prefix');
+            $table->string('name')->unique();
+            $table->string('prefix')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -29,7 +29,7 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </button>
-                <ul id="dropdown-operaciones" class="py-2 space-y-2">
+                <ul id="dropdown-operaciones" class="{{ Route::is('consume') || Route::is('sell') ? '' : 'hidden' }} py-2 space-y-2">
                     <li>
                         <a href="{{ route('sell') }}"
                             class="{{ Route::is('sell') ? 'bg-gray-100 animate-pulse' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><span class="flex w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>Vender cava</a>
@@ -90,10 +90,10 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </button>
-                <ul id="dropdown-config" class="hidden py-2 space-y-2">
+                <ul id="dropdown-config" class="{{ Route::is('users') || Route::is('roles') || Route::is('permissions') ? '' : 'hidden' }} py-2 space-y-2">
                     <li>
-                        <a href="#"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Usuarios</a>
+                        <a href="{{route('users')}}"
+                            class="{{ Route::is('users') ? 'bg-gray-100' : ''}} flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><span class="flex w-3 h-3 bg-indigo-500 rounded-full mr-2"></span>Usuarios</a>
                     </li>
                     <li>
                         <a href="#"

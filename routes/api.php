@@ -31,7 +31,7 @@ Route::get('/warehouses', function (Request $request) {
         ->get();
 
     //method values() quit de index of the array in result of method Get()
-    return $wa->where('building_id', 1)->values();
+    return $wa->whereIn('building_id', array(1,2))->values();
     
     
     })->name('api.warehouses.index');

@@ -25,14 +25,15 @@
                     <!-- end divider -->
 
                     <div class="mt-4 p-4">
+                        <x-errors class="mb-4" />
                         <div class="mb-6">
                             <x-select 
                                 wire:model.defer="product_id" placeholder="Selecciona el producto..." :async-data="route('api.products.index')"
-                                option-label="name" icon="Home" option-value="id" option-description="sap" />
+                                option-label="name" option-value="id" option-description="sap" />
                         </div>
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
-                                <x-input wire:model.defer="qty" placeholder="Cantidad" />
+                                <x-inputs.number wire:model.defer="qty" placeholder="Cantidad" />
                             </div>
                             <div>
                                 <x-input wire:model.defer="ticket" placeholder="Ticket" />
@@ -69,4 +70,45 @@
             </div>
         </div>
     </div>
+    @if ( $warehouse )
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID prod
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Prod name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Cantidad
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach ( $inventory as $item )
+                            @if ( $item->product_id )
+                                <tr class="bg-white dark:bg-gray-800">
+                                
+                                    <td class="px-6 py-4">
+                                        {{ $item->product_id }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        
+                                        {{ $item->product->name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $item->qty }}
+                                    </td>
+                                </tr>
+                            @endif
+                            
+                            @endforeach
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        @endif
 </div>

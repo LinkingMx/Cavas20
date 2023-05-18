@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Lists;
 use App\Models\Building;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Component;
+use Livewire\WithPagination;
 use WireUi\Traits\Actions;
 
 class ShowBuildings extends Component
 {
     use Actions;
+    use WithPagination;
 
     //Modasl properties
     public $openUpload = false;
@@ -109,6 +111,7 @@ class ShowBuildings extends Component
      * Delete product from databse with softdelets
      */
     public function delete( Building $building ){
+
         //Delete de info
         Building::where( 'id', '=', $building['id'])->delete();
 
@@ -121,4 +124,20 @@ class ShowBuildings extends Component
             $description = 'Registro eliminado con exito!'
         );
     }
-}
+
+    /**
+     * Function Confirm Delete
+     */
+    public function confirmDelete( Building $building ){
+        
+        // use a simple syntax
+        $this->notification()->confirm([
+            'title'       => 'Estas seguro?',
+            'description' => 'Estas a punto de eliminar esta sucursal: '.$building->name,
+            'icon'        => 'question',
+            'acceptLabel' => 'Sí, eliminar',
+            'method'      => 'delete',
+            'params'      => $building
+        ]);
+    }
+}   

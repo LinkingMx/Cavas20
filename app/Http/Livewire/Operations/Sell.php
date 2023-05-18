@@ -96,9 +96,8 @@ class Sell extends Component
     public function save(){
 
         //Execute validation whit rules if you want to estabilsh another porperty not equal to rules $this->validate( $this->yourRules );
-        $v = $this->validate();
-        dd($v);
-        /*
+        $this->validate();
+        
         //If the properties are actyually validated
         
             Transaction::create([
@@ -125,6 +124,6 @@ class Sell extends Component
                 $title = 'Producto agregado',
                 $description = 'el producto ha sido agregado a la cava con éxito!'
             );
-        */
+        
     }
 }

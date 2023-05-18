@@ -9,10 +9,12 @@ use Livewire\Component;
 use Stringable;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Str;
+use Livewire\WithPagination;
 
 class ShowWarehouses extends Component
 {
     use Actions;
+    use WithPagination;
 
     //Modasl properties
     public $openUpload = false;
@@ -85,11 +87,9 @@ class ShowWarehouses extends Component
         ->limit(1)
         ->get();
 
-        //dd($last_warehouse[0]['code']);
-
         //Substring to the last warehouse
-        $converted = Str::substr( $last_warehouse[0]['code'], 9, 3);
-        //dd($converted);
+        $converted = Str::substr( $last_warehouse[0]['code'], -3);
+        dd($converted);
 
         $next = $converted + 1;
         dd($next);
@@ -167,8 +167,34 @@ class ShowWarehouses extends Component
     /**
      * Delete product from databse
      */
-    public function delete(){
+    public function delete( Warehouse $warehouse ){
+        //Delete de info
+        Warehouse::where( 'id', '=', $warehouse['id'])->delete();
+
+        //Emit a event to render de view of the secondary component livewire
+        $this->emitTo('lists.show-warehouses','render');
+
+        // use a simple syntax: success | error | warning | info
+        $this->notification()->error(
+            $title = 'Registro eliminado',
+            $description = 'Registro eliminado con exito!'
+        );
+    }
+
+    /**
+     * Function Confirm Delete
+     */
+    public function confirmDelete( Warehouse $warehouse ){
         
+        // use a simple syntax
+        $this->notification()->confirm([
+            'title'       => 'Estas seguro?',
+            'description' => 'Estas a punto de eliminar esta cava: '.$warehouse->name,
+            'icon'        => 'question',
+            'acceptLabel' => 'Sí, eliminar',
+            'method'      => 'delete',
+            'params'      => $warehouse
+        ]);
     }
 }
 

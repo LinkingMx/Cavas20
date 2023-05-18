@@ -3,12 +3,15 @@
 namespace App\Http\Livewire\Lists;
 
 use App\Models\Product;
+use App\Models\Warehouse;
 use Livewire\Component;
+use Livewire\WithPagination;
 use WireUi\Traits\Actions;
 
 class ShowProducts extends Component
 {
     use Actions;
+    use WithPagination;
 
     //Modasl properties
     public $openUploadProducts = false;
@@ -106,12 +109,5 @@ class ShowProducts extends Component
             $title = 'Producto editado',
             $description = 'EL producto ha sido editado con éxito!'
         );
-    }
-
-    /**
-     * Delete product from databse
-     */
-    public function delete(){
-        
     }
 }

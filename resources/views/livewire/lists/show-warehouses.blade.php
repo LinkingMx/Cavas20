@@ -86,7 +86,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <x-button icon="pencil-alt" primary wire:click="edit({{ $item }})"/>
-                            <x-button icon="trash" negative wire:click="delete({{ $item }})" />
+                            <x-button icon="trash" negative wire:click="confirmDelete({{ $item }})" />
                         </td>
                     </tr>
                     @endforeach
@@ -138,6 +138,7 @@
                             option-value="id"
                             wire:model.defer="building_id"
                         >
+                            <option>Selecciona una sucursal...</option>
                         @foreach ($buildings as $item)
                             <option id="{{ $item->id }}" value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach

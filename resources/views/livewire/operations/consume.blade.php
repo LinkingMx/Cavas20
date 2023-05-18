@@ -35,6 +35,7 @@
                         <!-- end divider -->
 
                         <div class="mt-4 p-4">
+                            <x-errors class="mb-4" />
                             <div class="grid gap-6 mb-6 md:grid-cols-2">
                                 <div>
                                     <!-- select for product -->
@@ -100,6 +101,7 @@
                     </thead>
                     <tbody>
                         @foreach ( $inventory as $item )
+                        @if ( $item->product_id )
                         <tr class="bg-white dark:bg-gray-800">
                             
                             <td class="px-6 py-4">
@@ -112,6 +114,7 @@
                                 {{ $item->qty }}
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>

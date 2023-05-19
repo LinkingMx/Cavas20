@@ -7,6 +7,7 @@ use App\Http\Livewire\Lists\ShowBuildings;
 use App\Http\Livewire\Lists\ShowWarehouses;
 use App\Http\Livewire\Operations\Consume;
 use App\Http\Livewire\Operations\Sell;
+use App\Http\Livewire\Reports\Inventory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,4 +89,12 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('test', Test::class)->name('test');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/inventory/{id}', Inventory::class )->name('inventory');
 });

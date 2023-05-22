@@ -586,6 +586,7 @@ class ComposerStaticInitd22c91a21c46cb1058e3fea5ec12f28b
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\Reports\\AuditController' => __DIR__ . '/../..' . '/app/Http/Controllers/Reports/AuditController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Livewire\\Configuration\\Permissions' => __DIR__ . '/../..' . '/app/Http/Livewire/Configuration/Permissions.php',
         'App\\Http\\Livewire\\Configuration\\Roles' => __DIR__ . '/../..' . '/app/Http/Livewire/Configuration/Roles.php',

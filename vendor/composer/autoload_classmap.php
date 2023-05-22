@@ -15,6 +15,7 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\Reports\\AuditController' => $baseDir . '/app/Http/Controllers/Reports/AuditController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Livewire\\Configuration\\Permissions' => $baseDir . '/app/Http/Livewire/Configuration/Permissions.php',
     'App\\Http\\Livewire\\Configuration\\Roles' => $baseDir . '/app/Http/Livewire/Configuration/Roles.php',

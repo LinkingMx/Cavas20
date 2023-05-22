@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Reports\AuditController;
 use App\Http\Livewire\Configuration\Test;
 use App\Http\Livewire\Configuration\Users;
 use App\Http\Livewire\Lists\ShowProducts;
@@ -7,7 +8,6 @@ use App\Http\Livewire\Lists\ShowBuildings;
 use App\Http\Livewire\Lists\ShowWarehouses;
 use App\Http\Livewire\Operations\Consume;
 use App\Http\Livewire\Operations\Sell;
-use App\Http\Livewire\Reports\Inventory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,5 +96,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/inventory/{id}', Inventory::class )->name('inventory');
+    Route::get('audit/{id}', [ AuditController::class, 'index' ])->name('audit');
 });
